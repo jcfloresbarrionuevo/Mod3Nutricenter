@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCenter.Domain", "NutriCenter.Domian\NutriCenter.Domain.csproj", "{8734EBC0-B503-42F7-944E-EEB7425877B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCenter.Aplication", "NutriCenter.Aplication\NutriCenter.Aplication.csproj", "{A02BDD53-6CAB-4F6C-9033-7EEB8D99F57E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCenter.Infraestructure", "NutriCenter.Infraestructure\NutriCenter.Infraestructure.csproj", "{3301A823-7504-4EE0-84E9-1FAF6F1461A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCenter.API", "NutriCenter.API\NutriCenter.API.csproj", "{559F0AB1-07EB-4249-B53A-FE2164044224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCenter.Mapper", "NutriCenter.Mapper\NutriCenter.Mapper.csproj", "{81541D59-F0A1-45F9-8544-B44A1B8A05B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8734EBC0-B503-42F7-944E-EEB7425877B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8734EBC0-B503-42F7-944E-EEB7425877B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8734EBC0-B503-42F7-944E-EEB7425877B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8734EBC0-B503-42F7-944E-EEB7425877B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A02BDD53-6CAB-4F6C-9033-7EEB8D99F57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A02BDD53-6CAB-4F6C-9033-7EEB8D99F57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A02BDD53-6CAB-4F6C-9033-7EEB8D99F57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A02BDD53-6CAB-4F6C-9033-7EEB8D99F57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3301A823-7504-4EE0-84E9-1FAF6F1461A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3301A823-7504-4EE0-84E9-1FAF6F1461A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3301A823-7504-4EE0-84E9-1FAF6F1461A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3301A823-7504-4EE0-84E9-1FAF6F1461A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559F0AB1-07EB-4249-B53A-FE2164044224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559F0AB1-07EB-4249-B53A-FE2164044224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559F0AB1-07EB-4249-B53A-FE2164044224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559F0AB1-07EB-4249-B53A-FE2164044224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81541D59-F0A1-45F9-8544-B44A1B8A05B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81541D59-F0A1-45F9-8544-B44A1B8A05B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81541D59-F0A1-45F9-8544-B44A1B8A05B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81541D59-F0A1-45F9-8544-B44A1B8A05B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
