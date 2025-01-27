@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCenter.API", "NutriCen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCenter.Mapper", "NutriCenter.Mapper\NutriCenter.Mapper.csproj", "{81541D59-F0A1-45F9-8544-B44A1B8A05B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{96F66BB1-BA79-419E-8926-5C5DC24AC7BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{81541D59-F0A1-45F9-8544-B44A1B8A05B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81541D59-F0A1-45F9-8544-B44A1B8A05B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81541D59-F0A1-45F9-8544-B44A1B8A05B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96F66BB1-BA79-419E-8926-5C5DC24AC7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96F66BB1-BA79-419E-8926-5C5DC24AC7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96F66BB1-BA79-419E-8926-5C5DC24AC7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96F66BB1-BA79-419E-8926-5C5DC24AC7BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
