@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace NutriCenter.Domain.EntitiesDomain;
 
 public class Receta
 {
-    public int Id { get; private set; }    
+    public int Id { get; private set; }
+
+    [Required(ErrorMessage = "Nombre es requerido.")]
     public string Nombre { get; private set; }
     public string Descripcion { get; private set; }
     

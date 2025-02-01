@@ -2,14 +2,14 @@
 
 public class CrearIngredienteCommand
 {
-    public CrearIngredienteCommand(string Nombre, int Cantidad, string Unidad)
+    public CrearIngredienteCommand(string nombre, decimal cantidad, string unidad)
     {
-        this.Nombre = Nombre;
-        this.Cantidad = Cantidad;
-        this.Unidad = Unidad;
+        Nombre = nombre;
+        Cantidad = cantidad;
+        Unidad = unidad;
     }
 
-    public string? Nombre { get; set; }
+    public string Nombre { get; set; }
     public decimal Cantidad { get; set; }
-    public string? Unidad { get; set; }
+    public string Unidad { get; set; }
 }
