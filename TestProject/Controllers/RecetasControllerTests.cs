@@ -3,12 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NutriCenter.API.Controllers;
 using NutriCenter.Aplication.Commands;
-using NutriCenter.Aplication.DTOs;
 using NutriCenter.Aplication.Queries;
-using NutriCenter.Domain.EntitiesDomain;
 using NutriCenter.Infraestructure.Interfaces;
-using System.Reflection.Metadata;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TestProject.Controllers
 {
