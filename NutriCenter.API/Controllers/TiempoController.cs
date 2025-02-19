@@ -17,14 +17,14 @@ namespace NutriCenter.API.Controllers
             _obtenerHandler = obtenerHandler;
         }
 
-        [HttpPost]
+        [HttpPost("CrearTiempo")]
         public async Task<IActionResult> CrearTiempo([FromBody] CrearTiempoCommand command)
         {
             await _crearHandler.Handle(command);
             return Ok("Tiempo creado exitosamente.");
         }
 
-        [HttpGet]
+        [HttpGet("ObtenerTiempos")]
         public async Task<IActionResult> ObtenerTiempos()
         {
             var tiempos = await _obtenerHandler.Handle(new ObtenerTiempoQuery());
