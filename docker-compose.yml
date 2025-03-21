@@ -1,5 +1,3 @@
-version: '3.8'
-
 networks:
   networkapi:
 
@@ -18,9 +16,8 @@ services:
           - /home/jcflores/contenedores/serverdata:/var/opt/mssql
         networks:
             - networkapi
-    
     webplanesnutri:
-        image: webapinur
+        container_name: webapinur
         build:
             context: .
             dockerfile: Dockerfile
@@ -29,10 +26,10 @@ services:
         depends_on:
             - sqlserverdocker
         ports:
-            - 5002:8081
+            - 9014:8080
 volumes:
   sqlserverdata:
-    driver: local  
+    driver: local 
   
 
 # docker compose -f docker-compose.yml up -d  

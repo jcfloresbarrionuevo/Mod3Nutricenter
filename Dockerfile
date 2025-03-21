@@ -3,7 +3,7 @@ USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
-ENV DB_CONECTION_STRING="Server=154.53.50.174\\SQLEXPRESS; DataBase=DBNur;User ID=usNur;Password=xyz.789;Application Name=DBNur;TrustServerCertificate=True;Application Name=DBNur"
+ENV DB_CONECTION_STRING="Server=sqlserverdocker; DataBase=DBNur;User ID=usNur;Password=xyz.789;Application Name=DBNur;TrustServerCertificate=True;Application Name=DBNur"
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
