@@ -29,7 +29,6 @@ services:
             - 9014:8080
 volumes:
   sqlserverdata:
-    driver: local 
-  
+    driver: local
 
 # docker compose -f docker-compose.yml up -d  
