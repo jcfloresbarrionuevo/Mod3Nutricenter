@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 //
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DbNur"));
+    options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONECTION_STRING") ?? builder.Configuration.GetConnectionString("DbNur"));
 });
 
 builder.Services.AddHttpClient();

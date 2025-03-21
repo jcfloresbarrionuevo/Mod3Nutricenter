@@ -1,0 +1,38 @@
+version: '3.8'
+
+networks:
+  networkapi:
+
+services:
+    sqlserverdocker:
+        container_name: mssqldb
+        hostname: mssqldb
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        environment:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: 'Passw0rd'
+          MSSQL_PID: 'Developer'
+        ports:
+          - "1433:1433"
+        volumes:
+          - /home/jcflores/contenedores/serverdata:/var/opt/mssql
+        networks:
+            - networkapi
+    
+    webplanesnutri:
+        image: webapinur
+        build:
+            context: .
+            dockerfile: Dockerfile
+        networks:
+            - networkapi
+        depends_on:
+            - sqlserverdocker
+        ports:
+            - 5002:8081
+volumes:
+  sqlserverdata:
+    driver: local  
+  
+
+# docker compose -f docker-compose.yml up -d  
