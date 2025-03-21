@@ -26,9 +26,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "NutriCenter.API.dll"]
-
-
-#docker build --no-cache -t tuapi:latest .
-#docker run -d -p 9014:8080 --name atuapi tuimagen:latest
-#docker exec -it apicontainer sh
-#docker system prune -a
