@@ -1,0 +1,9 @@
+include:
+  - postgres/docker-compose.db.yml
+  - api-patient/docker-compose.api.yml
+  - java-app/docker-compose.java.yml
+  - web-planes-nutri/docker-compose.web.yml
+
+networks:
+  app-network:
+    driver: bridge
