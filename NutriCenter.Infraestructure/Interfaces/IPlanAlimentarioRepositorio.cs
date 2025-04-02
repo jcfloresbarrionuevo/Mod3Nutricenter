@@ -1,9 +1,9 @@
-﻿using NutriCenter.Domain.EntitiesDomain;
+using NutriCenter.Domain.EntitiesDomain;
 
 namespace NutriCenter.Infraestructure.Interfaces;
 
 public interface IPlanAlimentarioRepositorio
 {
-    Task AgregarPlanAsync(PlanAlimentario plan);
-    Task<List<PlanAlimentario>> ObtenerPlanAsync();
+	Task AgregarPlanAsync(PlanAlimentario plan);
+	Task<List<PlanAlimentario>> ObtenerPlanAsync();
 }

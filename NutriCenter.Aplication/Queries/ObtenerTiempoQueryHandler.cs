@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using NutriCenter.Aplication.DTOs;
 using NutriCenter.Infraestructure.Interfaces;
 
@@ -6,24 +6,24 @@ namespace NutriCenter.Aplication.Queries;
 
 public class ObtenerTiempoQueryHandler
 {
-    private readonly ITiempoComidaRepositorio _repositorio;
-    private readonly IMapper _mapper;
+	private readonly ITiempoComidaRepositorio _repositorio;
+	private readonly IMapper _mapper;
 
-    public ObtenerTiempoQueryHandler(ITiempoComidaRepositorio repositorio, IMapper mapper)
-    {
-        _repositorio = repositorio;
-        _mapper = mapper;
-    }
+	public ObtenerTiempoQueryHandler(ITiempoComidaRepositorio repositorio, IMapper mapper)
+	{
+		_repositorio = repositorio;
+		_mapper = mapper;
+	}
 
-    public async Task<List<TiempoComidaDTO>> Handle(ObtenerTiempoQuery query)
-    {
-        var tiempo = await _repositorio.ObtenerTiempoComiAsync();
+	public async Task<List<TiempoComidaDTO>> Handle(ObtenerTiempoQuery query)
+	{
+		var tiempo = await _repositorio.ObtenerTiempoComiAsync();
 
-        if (tiempo==null || !tiempo.Any())
-        {
-            return new List<TiempoComidaDTO>();
-        }
+		if (tiempo == null || !tiempo.Any())
+		{
+			return new List<TiempoComidaDTO>();
+		}
 
-        return _mapper.Map<List<TiempoComidaDTO>>(tiempo);
-    }
+		return _mapper.Map<List<TiempoComidaDTO>>(tiempo);
+	}
 }

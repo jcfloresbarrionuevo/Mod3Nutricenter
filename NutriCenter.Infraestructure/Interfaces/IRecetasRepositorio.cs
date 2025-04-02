@@ -1,9 +1,9 @@
-﻿using NutriCenter.Domain.EntitiesDomain;
+using NutriCenter.Domain.EntitiesDomain;
 
 namespace NutriCenter.Infraestructure.Interfaces;
 
 public interface IRecetasRepositorio
 {
-    Task AgregarRecetaAsync(Receta plan);
-    Task<List<Receta>> ObtenerRecetaAsync();
+	Task AgregarRecetaAsync(Receta plan);
+	Task<List<Receta>> ObtenerRecetaAsync();
 }

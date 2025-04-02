@@ -15,4 +15,12 @@
     <ProjectReference Include="..\NutriCenter.Infraestructure\NutriCenter.Infraestructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\JC\backup\NUR\TentingMod3\Mod3Nutricenter\NutriCenter.Aplication\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\JC\backup\NUR\TentingMod3\Mod3Nutricenter\NutriCenter.Aplication\.editorconfig" />
+  </ItemGroup>
+
 </Project>

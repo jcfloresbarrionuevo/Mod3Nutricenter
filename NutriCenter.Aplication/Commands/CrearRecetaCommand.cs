@@ -1,10 +1,10 @@
-﻿namespace NutriCenter.Aplication.Commands;
+namespace NutriCenter.Aplication.Commands;
 
 public record CrearRecetaCommand
 (
-    string Nombre,
-    string Descripcion,
-    decimal CostoMonto,
-    string CostoMoneda,
-    List<CrearIngredienteCommand> Ingredientes
+	string Nombre,
+	string Descripcion,
+	decimal CostoMonto,
+	string CostoMoneda,
+	List<CrearIngredienteCommand> Ingredientes
 );

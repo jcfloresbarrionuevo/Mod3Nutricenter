@@ -1,6 +1,6 @@
-﻿namespace NutriCenter.Aplication.Commands;
+namespace NutriCenter.Aplication.Commands;
 
 public record CrearTiempoCommand(
-    string Nombre,
-    TimeSpan Hora
+	string Nombre,
+	TimeSpan Hora
 );

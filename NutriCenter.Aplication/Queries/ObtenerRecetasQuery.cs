@@ -1,4 +1,4 @@
-﻿namespace NutriCenter.Aplication.Queries
+namespace NutriCenter.Aplication.Queries
 {
-    public record ObtenerRecetasQuery();
+	public record ObtenerRecetasQuery();
 }

@@ -18,17 +18,17 @@ builder.Services.AddSwaggerGen();
 //
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONECTION_STRING") ?? builder.Configuration.GetConnectionString("DbNur"));
+	options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONECTION_STRING") ?? builder.Configuration.GetConnectionString("DbNur"));
 });
 
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IPlanAlimentarioRepositorio, PlanAlimentarioRepositorio>();
 builder.Services.AddScoped<IRecetasRepositorio, RecetasRepositorio>();
-builder.Services.AddScoped<ITiempoComidaRepositorio,TiempoComidaRepositorio>();
+builder.Services.AddScoped<ITiempoComidaRepositorio, TiempoComidaRepositorio>();
 builder.Services.AddScoped<IPlanRecetaTiempoRepositorio, PlanRecetaTiempoRepositorio>();
 
-// Inyección de Handlers
+// InyecciÃ³n de Handlers
 builder.Services.AddScoped<CrearRecetasCommandHandler>();
 builder.Services.AddScoped<ObtenerRecetasQueryHandler>();
 
@@ -41,13 +41,14 @@ builder.Services.AddScoped<ObtenerPlanQueryHandler>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
-builder.Services.AddCors(options => {
-    options.AddPolicy("PoliticaAcceso", app =>
-    {
-        app.AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-    });
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("PoliticaAcceso", app =>
+	{
+		app.AllowAnyOrigin()
+		.AllowAnyHeader()
+		.AllowAnyMethod();
+	});
 });
 //
 

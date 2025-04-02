@@ -14,4 +14,12 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\JC\backup\NUR\TentingMod3\Mod3Nutricenter\NutriCenter.Domian\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\JC\backup\NUR\TentingMod3\Mod3Nutricenter\NutriCenter.Domian\.editorconfig" />
+  </ItemGroup>
+
 </Project>

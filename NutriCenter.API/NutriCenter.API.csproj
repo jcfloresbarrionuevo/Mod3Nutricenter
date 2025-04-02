@@ -22,4 +22,12 @@
     <ProjectReference Include="..\NutriCenter.Mapper\NutriCenter.Mapper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\JC\backup\NUR\TentingMod3\Mod3Nutricenter\NutriCenter.API\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\JC\backup\NUR\TentingMod3\Mod3Nutricenter\NutriCenter.API\.editorconfig" />
+  </ItemGroup>
+
 </Project>
