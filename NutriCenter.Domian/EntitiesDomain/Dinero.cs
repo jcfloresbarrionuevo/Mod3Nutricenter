@@ -21,7 +21,7 @@ public class Dinero
 			   Moneda == dinero.Moneda;
 	}
 
-public override int GetHashCode()
+ public override int GetHashCode()
 	{
 		return HashCode.Combine(Monto, Moneda);
 	}
