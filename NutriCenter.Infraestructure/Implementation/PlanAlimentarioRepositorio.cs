@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using NutriCenter.Domain.EntitiesDomain;
 using NutriCenter.Infraestructure.DBContext;
@@ -21,10 +22,13 @@ public class PlanAlimentarioRepositorio : IPlanAlimentarioRepositorio
 			await _context.PlanAlimentario.AddAsync(plan);
 			await _context.SaveChangesAsync();
 		}
+		catch (DbUpdateException ex)
+		{
+			throw new InvalidOperationException("No se pudo guardar el plan alimentario en la base de datos.", ex);
+		}
 		catch (Exception ex)
 		{
-
-			throw;
+			throw new InvalidOperationException("Ocurrió un error inesperado al agregar el plan alimentario.", ex);
 		}
 	}
 
