@@ -13,14 +13,14 @@ namespace TestProject.Controllers
     {
         private Mock<CrearRecetasCommandHandler> _mockCrearHandler;
         private Mock<ObtenerRecetasQueryHandler> _mockObtenerHandler;
-        private RecetasController _controller;        
+        private RecetasController _controller;
         public RecetasControllerTests()
         {
             var mockRecetasRepository = new Mock<IRecetasRepositorio>();
             _mockCrearHandler = new Mock<CrearRecetasCommandHandler>(mockRecetasRepository.Object);
 
             var mockMapper = new Mock<IMapper>();
-            _mockObtenerHandler = new Mock<ObtenerRecetasQueryHandler>(mockRecetasRepository.Object, mockMapper.Object);            
+            _mockObtenerHandler = new Mock<ObtenerRecetasQueryHandler>(mockRecetasRepository.Object, mockMapper.Object);
         }
 
         [TestMethod]

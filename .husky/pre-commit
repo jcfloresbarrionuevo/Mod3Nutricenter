@@ -20,3 +20,6 @@
 #echo 'Husky.Net is awesome!'
 
 echo 'prueba de pre-commit'
+
+echo 'formato'
+dotnet-format .

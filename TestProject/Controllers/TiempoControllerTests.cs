@@ -18,10 +18,10 @@ namespace TestProject.Controllers
 
         public TiempoControllerTests()
         {
-            var mockTiempoRepository= new Mock<ITiempoComidaRepositorio>();
+            var mockTiempoRepository = new Mock<ITiempoComidaRepositorio>();
             var mockMapper = new Mock<IMapper>();
 
-            _mockCrearHandler= new Mock<CrearTiempoCommandHandler>(mockTiempoRepository.Object);
+            _mockCrearHandler = new Mock<CrearTiempoCommandHandler>(mockTiempoRepository.Object);
             _mockObtenerHandler = new Mock<ObtenerTiempoQueryHandler>(mockTiempoRepository.Object, mockMapper.Object);
         }
 

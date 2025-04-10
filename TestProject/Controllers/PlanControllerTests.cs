@@ -20,7 +20,7 @@ namespace TestProject.Controllers
             var mockPlanRepository = new Mock<IPlanAlimentarioRepositorio>();
             var mockRecetas = new Mock<IPlanRecetaTiempoRepositorio>();
             _mockCrearHandler = new Mock<CrearPlanCommandHandler>(mockPlanRepository.Object, mockRecetas.Object);
-            
+
             var mockMapper = new Mock<IMapper>();
             _mockObtenerHandler = new Mock<ObtenerPlanQueryHandler>(mockPlanRepository.Object, mockMapper.Object);
         }
@@ -44,27 +44,27 @@ namespace TestProject.Controllers
             var _controller = new PlanController(_mockCrearHandler.Object, _mockObtenerHandler.Object);
 
             //Act
-            var result=await _controller.CrearPlan(command) as OkObjectResult;
+            var result = await _controller.CrearPlan(command) as OkObjectResult;
 
             //Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result,typeof(OkObjectResult));
+            Assert.IsInstanceOfType(result, typeof(OkObjectResult));
             var okResult = result as OkObjectResult;
-            Assert.AreEqual("Plan creado exitosamente.",okResult.Value);
+            Assert.AreEqual("Plan creado exitosamente.", okResult.Value);
         }
 
         [TestMethod]
         public async Task ObtenerPlan_ReturnOkResult()
         {
             //Arrange
-            var _controller = new PlanController(_mockCrearHandler.Object,_mockObtenerHandler.Object);
-            
+            var _controller = new PlanController(_mockCrearHandler.Object, _mockObtenerHandler.Object);
+
             //Act
-            var result=await _controller.ObtenerPlan() as OkObjectResult;
+            var result = await _controller.ObtenerPlan() as OkObjectResult;
 
             //Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(200,result.StatusCode);
+            Assert.AreEqual(200, result.StatusCode);
         }
     }
 }
