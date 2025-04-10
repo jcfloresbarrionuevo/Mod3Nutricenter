@@ -32,7 +32,7 @@ public class PlanAlimentarioRepositorio : IPlanAlimentarioRepositorio
 		}
 	}
 
-public async Task<List<PlanAlimentario>> ObtenerPlanAsync()
+ public async Task<List<PlanAlimentario>> ObtenerPlanAsync()
 	{
 		return await _context.PlanAlimentario.ToListAsync();
 	}
