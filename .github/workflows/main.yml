@@ -12,38 +12,54 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install SSH key
-      uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: Setup SSH
+      run: |
+        # Configurar el entorno SSH
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        
+        # Guardar la clave privada
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        
+        # Agregar host a known_hosts
+        ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+        chmod 644 ~/.ssh/known_hosts
 
-    - name: Ejecuta comandos en el VPS
+    - name: Verify SSH connection
+      run: |
+        # Prueba básica de conexión
+        ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo 'Conexión SSH exitosa!'"
+
+    - name: Execute deployment commands
       env:
-        VPS_USER: ${{ secrets.VPS_USER }}
-        VPS_HOST: ${{ secrets.VPS_HOST }}
         PROJECT_DIR: "/home/Proyectos/Mod3Nutricenter"
       run: |
-        ssh -o StrictHostKeyChecking=no ${VPS_USER}@${VPS_HOST} << EOF
-        set -e  # Salir inmediatamente si algún comando falla
+        ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+        set -e  # Detener ejecución ante cualquier error
         
-        echo "Ingresando al directorio del proyecto..."
-        cd ${PROJECT_DIR}
+        echo "1. Actualizando repositorio..."
+        cd $PROJECT_DIR
+        git fetch origin
+        git reset --hard origin/main
         
-        echo "Deteniendo y eliminando el contenedor antiguo..."
-        docker stop nutricenter-container || true
-        docker rm nutricenter-container || true
+        echo "2. Deteniendo y eliminando contenedor antiguo..."
+        docker stop nutricenter-container || echo "No se encontró contenedor en ejecución"
+        docker rm nutricenter-container || echo "No se encontró contenedor existente"
         
-        echo "Eliminando la imagen antigua..."
-        docker rmi nutricenter-api || true
+        echo "3. Eliminando imagen antigua..."
+        docker rmi nutricenter-api || echo "No se encontró imagen existente"
         
-        echo "Actualizando el repositorio..."
-        git pull origin main
-        
-        echo "Construyendo la nueva imagen Docker..."
+        echo "4. Construyendo nueva imagen Docker..."
         docker build -t nutricenter-api .
         
-        echo "Iniciando el nuevo contenedor..."
-        docker run -d --name nutricenter-container -p 8080:8080 -p 8081:8081 nutricenter-api
+        echo "5. Iniciando nuevo contenedor..."
+        docker run -d \
+          --name nutricenter-container \
+          -p 8080:8080 \
+          -p 8081:8081 \
+          --restart unless-stopped \
+          nutricenter-api
         
         echo "¡Despliegue completado con éxito!"
         EOF
