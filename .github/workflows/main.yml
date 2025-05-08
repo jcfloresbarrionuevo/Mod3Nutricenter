@@ -1,0 +1,49 @@
+name: DeployAPINUR
+
+on:
+  push:
+    branches: [ main ]  # Rama principal
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install SSH key
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Ejecuta comandos en el VPS
+      env:
+        VPS_USER: ${{ secrets.VPS_USER }}
+        VPS_HOST: ${{ secrets.VPS_HOST }}
+        PROJECT_DIR: "/home/Proyectos/Mod3Nutricenter"
+      run: |
+        ssh -o StrictHostKeyChecking=no ${VPS_USER}@${VPS_HOST} << EOF
+        set -e  # Salir inmediatamente si algún comando falla
+        
+        echo "Ingresando al directorio del proyecto..."
+        cd ${PROJECT_DIR}
+        
+        echo "Deteniendo y eliminando el contenedor antiguo..."
+        docker stop nutricenter-container || true
+        docker rm nutricenter-container || true
+        
+        echo "Eliminando la imagen antigua..."
+        docker rmi nutricenter-api || true
+        
+        echo "Actualizando el repositorio..."
+        git pull origin main
+        
+        echo "Construyendo la nueva imagen Docker..."
+        docker build -t nutricenter-api .
+        
+        echo "Iniciando el nuevo contenedor..."
+        docker run -d --name nutricenter-container -p 8080:8080 -p 8081:8081 nutricenter-api
+        
+        echo "¡Despliegue completado con éxito!"
+        EOF
