@@ -12,54 +12,48 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup SSH
+    - name: Setup SSH environment
       run: |
-        # Configurar el entorno SSH
+        # Configurar directorio SSH con permisos correctos
         mkdir -p ~/.ssh
         chmod 700 ~/.ssh
         
-        # Guardar la clave privada
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        # Guardar clave privada (formato correcto)
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         
-        # Agregar host a known_hosts
+        # Configurar known_hosts
         ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
 
-    - name: Verify SSH connection
-      run: |
-        # Prueba básica de conexión
-        ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo 'Conexión SSH exitosa!'"
+        # Verificar contenido de la clave (solo para debug)
+        echo "----- INICIO CLAVE -----"
+        head -n 3 ~/.ssh/id_rsa
+        echo "..."
+        tail -n 3 ~/.ssh/id_rsa
+        echo "----- FIN CLAVE -----"
 
-    - name: Execute deployment commands
+    - name: Test SSH connection (verbose)
+      run: |
+        ssh -vvv -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo 'Prueba de conexión SSH exitosa!'"
+
+    - name: Execute deployment
       env:
         PROJECT_DIR: "/home/Proyectos/Mod3Nutricenter"
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-        set -e  # Detener ejecución ante cualquier error
-        
-        echo "1. Actualizando repositorio..."
-        cd $PROJECT_DIR
+        ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOD'
+        set -ex
+        cd $PROJECT_DIR || exit 1
         git fetch origin
         git reset --hard origin/main
-        
-        echo "2. Deteniendo y eliminando contenedor antiguo..."
-        docker stop nutricenter-container || echo "No se encontró contenedor en ejecución"
-        docker rm nutricenter-container || echo "No se encontró contenedor existente"
-        
-        echo "3. Eliminando imagen antigua..."
-        docker rmi nutricenter-api || echo "No se encontró imagen existente"
-        
-        echo "4. Construyendo nueva imagen Docker..."
+        docker stop nutricenter-container || true
+        docker rm nutricenter-container || true
+        docker rmi nutricenter-api || true
         docker build -t nutricenter-api .
-        
-        echo "5. Iniciando nuevo contenedor..."
         docker run -d \
           --name nutricenter-container \
           -p 8080:8080 \
           -p 8081:8081 \
           --restart unless-stopped \
           nutricenter-api
-        
-        echo "¡Despliegue completado con éxito!"
-        EOF
+        EOD
