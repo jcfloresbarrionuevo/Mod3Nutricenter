@@ -31,5 +31,12 @@ namespace NutriCenter.API.Controllers
 			var plan = await _obtenerHandler.Handle(new ObtenerPlanQuery());
 			return Ok(plan);
 		}
+
+		[HttpGet("ObtenerPlanAction")]
+		public async Task<IActionResult> ObtenerPlanAction()
+		{
+			var plan = await _obtenerHandler.Handle(new ObtenerPlanQuery());
+			return Ok(plan);
+		}
 	}
 }
